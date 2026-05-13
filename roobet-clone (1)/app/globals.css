@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 5%;
+    --foreground: 0 0% 100%;
+    --card: 220 26% 10%;
+    --card-foreground: 0 0% 100%;
+    --popover: 220 26% 10%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 48 96% 53%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 48 96% 53%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 26% 20%;
+    --input: 220 26% 20%;
+    --ring: 48 96% 53%;
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .game-card {
+    @apply relative overflow-hidden rounded-card bg-surface border border-border 
+           transition-all duration-200 hover:-translate-y-1 hover:shadow-xl;
+  }
+
+  .btn-primary {
+    @apply bg-accent text-black font-semibold rounded-md px-4 py-2 
+           hover:brightness-110 active:scale-[0.98] transition-all;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent text-white border border-white/20 rounded-md px-4 py-2 
+           hover:bg-white/5 active:scale-[0.98] transition-all;
+  }
+
+  .sidebar-item {
+    @apply flex items-center gap-3 px-4 py-3 text-sm text-text-secondary 
+           hover:text-white hover:bg-white/5 rounded-md transition-all cursor-pointer;
+  }
+
+  .sidebar-item.active {
+    @apply text-white bg-white/5 border-l-[3px] border-accent;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent to-amber-400 bg-clip-text text-transparent;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Custom animations */
+@keyframes crashGraph {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes coinFlip {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(1800deg); }
+}
+
+.animate-crash-graph {
+  animation: crashGraph 2s linear infinite;
+}
+
+.animate-coin-flip {
+  animation: coinFlip 3s ease-out forwards;
+}
